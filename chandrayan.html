@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- Sky background -->
+    <a-sky src="sky.jpg"></a-sky>
+
+    <a-sphere id="earth" position="0 0 -20" radius="10" color="#ffffff" material="src: finalearth.png"; emissive="#0033ff">
+        <a-animation attribute="rotation" to="0 360 0" dur="60000" easing="linear" repeat="indefinite"></a-animation>
+    </a-sphere>
+    
+    <a-entity id="spaceObjects">
+      <!-- Earth -->
+      
+      
+      <!-- Moon Container -->
+      <a-entity id="moonContainer" position="25 0 -20">
+        <!-- Moon -->
+        <a-entity id="moon">
+          <a-sphere radius="3.5" color="#ffffff" material="src: moon.jpg">
+            <a-animation attribute="rotation" to="0 360 0" dur="10000" easing="linear" repeat="indefinite"></a-animation>
+          </a-sphere>
+          <a-animation attribute="position" to="25 0 0" dur="10000" easing="linear" repeat="indefinite"></a-animation>
+        </a-entity>
+        
+        <!-- Satellite -->
+        <a-entity id="satellite" position="8 0 0">
+          <a-cylinder height="0.12" radius="0.5" color="#ff8800"></a-cylinder>
+          <a-box position="0 0.2 0" width="0.4" height="0.4" depth="0.2" color="#ff8800">
+            <a-animation attribute="rotation" to="0 360 0" dur="2000" easing="linear" repeat="indefinite"></a-animation>
+          </a-box>
+          <a-text value="Chandrayan 3" position="0 0.5 0" color="#ffffff" align="center"></a-text>
+          <a-animation attribute="rotation" to="0 360 0" dur="4000" easing="linear" repeat="indefinite"></a-animation>
+          <a-animation attribute="position" to="4 0 0" dur="4000" easing="linear" repeat="indefinite"></a-animation>
+        </a-entity>
+      </a-entity>
+    </a-entity>
+    
+    <!-- Camera -->
+    <a-camera position="0 1.6 0"></a-camera>
+  </a-scene>
+
+  <script>
+    var earthRotationSpeed = 0.2; // Earth's rotation speed in degrees per frame
+    var moonRevolutionSpeed = 0.7; // Moon's revolution speed in degrees per frame
+    var satelliteRevolutionSpeed = 0.5; // Satellite's revolution speed in degrees per frame
+    var spaceObjects = document.querySelector("#spaceObjects");
+    var moonContainer = document.querySelector("#moonContainer");
+    var satellite = document.querySelector("#satellite");
+    var earthContainer = document.querySelector("#earth");
+    
+    function animate() {
+      // Update Earth's rotation
+      spaceObjects.object3D.rotation.y += earthRotationSpeed * Math.PI / 180;
+
+      // Update Moon's revolution around Earth
+      moonContainer.object3D.rotation.y += moonRevolutionSpeed * Math.PI / 180;
+      
+      // Update Satellite's revolution around Moon
+      satellite.object3D.rotation.y += satelliteRevolutionSpeed * Math.PI / 180;
+
+      earthContainer.object3D.rotation.y += satelliteRevolutionSpeed * Math.PI / 180;
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  </script>
+</body>
+</html>
