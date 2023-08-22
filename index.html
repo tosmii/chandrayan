@@ -3,13 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+  <title>A-Frame Room without Ceiling</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
     <a href="chandrayan.html" target="_blank">open chandrayan</a>
-    <!-- https://tosmii.github.io/chandrayan/ ye h website link  -->
-    <!-- ab isme jo bhi add kre same pura folder ki saari files git prr same repo m uplad kr diyo -->
-    <!-- woh apne aap same function krne lagega -->
-    <!-- https://github.com/tosmii/chandrayan repo link -->
+    <a-scene>
+     <!-- Ground -->
+     <a-plane position="0 -1 0" rotation="-90 0 0" width="10" height="10" color="gray"></a-plane>
+
+     <!-- Walls -->
+     <a-box position="0 0.5 -5" width="10" height="10" depth="0.1" color="purple"></a-box>
+     <a-box position="0 0.5 5" width="10" height="10" depth="0.1" color="purple"></a-box>
+     <a-box position="-5 0.5 0" width="0.1" height="10" depth="10" color="purple"></a-box>
+     <a-box position="5 0.5 0" width="0.1" height="10" depth="10" color="purple"></a-box>
+ 
+     <!-- Photo Frames -->
+    <a-image src="frame1.jpg" position="0 2 -4.5 " width="3" height="2"></a-image>
+    <a-image src="frame3.jpg" position="4.5 2 0" width="3" height="2" rotation="0 90 0"></a-image>
+    <a-image src="frame2.jpg" position="-4.5 2 0" width="3" height="2" rotation="0 -90 0"></a-image>
+
+    <!-- Titles -->
+    <a-text value="TOSMI GOEL
+                     086
+                   MECHANICAL
+                    IGDTUW" position="0 0.5 -4.26" align="center" color="black" width="3.5"></a-text>
+    <a-text value="SIMMI AGGARWAL
+                      070
+                   MECHANICAL
+                    IGDTUW" position="0 1.5 4.5" align="center" color="black" width="3.5"></a-text>
+    <a-text value="SWATI SINGH
+                       084
+                    MECHANICAL
+                     IGDTUW" position="4.5 1.5 0" align="center"  color="black" width="3.5"></a-text>
+ 
+     <!-- Camera -->
+     <a-camera position="0 1.6 0">
+       <a-cursor></a-cursor>
+     </a-camera>
+   </a-scene>
 </body>
 </html>
